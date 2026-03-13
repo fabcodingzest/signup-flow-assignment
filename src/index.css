@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-app-bg: #f6f7f9;
+  --color-surface-muted: #f7f7f8;
+  --color-border-subtle: #d9e0e6;
+  --color-text-primary: #132c4a;
+  --color-text-muted: #8292a1;
+  --color-brand-primary: #0054fd;
+  --color-required-indicator: #ff7c52;
+  --shadow-panel: -16px 4px 35px 0 rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 10px 24px rgba(17, 33, 74, 0.06);
+}
+
+@layer base {
+  html {
+    font-family: "Rubik", sans-serif;
+  }
+  body {
+    background: var(--color-app-bg);
+  }
+}
