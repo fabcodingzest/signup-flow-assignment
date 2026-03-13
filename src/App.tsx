@@ -10,6 +10,7 @@ import { OtpVerificationStep } from "./components/OtpVerificationStep";
 import { PasswordStep } from "./components/PasswordStep";
 import type { SignupFormValues, StepConfig } from "./types/signup";
 import { signupSchema } from "./validation/signupSchema";
+import Illustration from "./assets/illustration.png";
 
 const steps: StepConfig[] = [
   {
@@ -99,7 +100,7 @@ function App() {
             </div>
 
             <div className="pb-8">
-              <img src="src/assets/illustration.png" alt="illustration" />
+              <img src={Illustration} alt="illustration" />
             </div>
           </div>
 
