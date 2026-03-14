@@ -3,7 +3,6 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 
 import {
-  getFormFieldHelperTextClass,
   getFormFieldStateClasses,
   handleFieldChangeWithRevalidation,
   formFieldInputBaseClass,
@@ -118,14 +117,17 @@ export function PasswordStep() {
   const shouldValidatePasswordOnChange = touchedFields.password || Boolean(passwordError);
   const shouldValidateConfirmPasswordOnChange =
     touchedFields.confirmPassword || Boolean(confirmPasswordError);
-  const passwordHelperTextClass = getFormFieldHelperTextClass(
-    Boolean(passwordError),
-    password.length >= 6,
-  );
-  const confirmPasswordHelperTextClass = getFormFieldHelperTextClass(
-    Boolean(confirmPasswordError),
-    Boolean(confirmPassword) && confirmPassword === password,
-  );
+  const passwordHelperClass = passwordError
+    ? "text-required-indicator"
+    : password.length >= 6
+      ? "text-success-indicator"
+      : "text-text-muted";
+
+  const confirmHelperClass = confirmPasswordError
+    ? "text-required-indicator"
+    : confirmPassword && confirmPassword === password
+      ? "text-success-indicator"
+      : "text-text-muted";
 
   useEffect(() => {
     setFocus("password");
@@ -143,7 +145,7 @@ export function PasswordStep() {
           fieldName="password"
           fieldStateClasses={passwordFieldClasses}
           helperText="Must be atleast 6 characters"
-          helperTextClassName={passwordHelperTextClass}
+          helperTextClassName={passwordHelperClass}
           inputId="password"
           inputType={showPassword ? "text" : "password"}
           label="Enter new password"
@@ -162,7 +164,7 @@ export function PasswordStep() {
           fieldName="confirmPassword"
           fieldStateClasses={confirmPasswordFieldClasses}
           helperText="Both passwords must match"
-          helperTextClassName={confirmPasswordHelperTextClass}
+          helperTextClassName={confirmHelperClass}
           inputId="confirm-password"
           inputType={showConfirmPassword ? "text" : "password"}
           label="Confirm password"

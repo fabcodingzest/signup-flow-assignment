@@ -30,18 +30,6 @@ export function getFormFieldStateClasses(hasError: boolean) {
   };
 }
 
-export function getFormFieldHelperTextClass(hasError: boolean, isSuccess: boolean) {
-  if (hasError) {
-    return formFieldErrorClass;
-  }
-
-  if (isSuccess) {
-    return formFieldSuccessHelperClass;
-  }
-
-  return formFieldMutedHelperClass;
-}
-
 type RevalidateOnChangeOptions = {
   event: ChangeEvent<HTMLInputElement | HTMLSelectElement>;
   onChange: (value: string) => void;
