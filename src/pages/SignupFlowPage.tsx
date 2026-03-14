@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -56,18 +56,6 @@ export function SignupFlowPage() {
     isContinueLoading || (isFirstStep && !accountType) || (isOtpStep && otp.length !== 4);
 
   const loadingText = isOtpStep ? "Verifying..." : "Submitting...";
-
-  useEffect(() => {
-    if (!isSummaryModalOpen) {
-      return;
-    }
-
-    const activeElement = document.activeElement;
-
-    if (activeElement instanceof HTMLElement) {
-      activeElement.blur();
-    }
-  }, [isSummaryModalOpen]);
 
   async function handleContinueClick() {
     if (isContinueLoading) {
