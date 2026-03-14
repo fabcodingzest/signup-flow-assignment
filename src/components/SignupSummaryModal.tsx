@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { FiCheck, FiShield } from "react-icons/fi";
 
 import { FormActionButton } from "./FormActionButton";
