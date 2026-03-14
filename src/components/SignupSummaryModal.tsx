@@ -35,7 +35,6 @@ export function SignupSummaryModal({
       onClick={onClose}
       onKeyDown={(e) => e.key === "Escape" && onClose()}
       tabIndex={-1}
-      autoFocus
     >
       <div
         className="w-full max-w-[479px] animate-[fade-in_200ms_ease-out] rounded-2xl bg-white px-5 py-8 shadow-[0_24px_80px_rgba(19,44,74,0.18)] sm:px-6 sm:py-9"
@@ -72,7 +71,7 @@ export function SignupSummaryModal({
         </div>
 
         <div className="mt-8 flex justify-center">
-          <FormActionButton variant="primary" onClick={onConfirm}>
+          <FormActionButton variant="primary" onClick={onConfirm} autoFocus>
             Go To Dashboard
           </FormActionButton>
         </div>
