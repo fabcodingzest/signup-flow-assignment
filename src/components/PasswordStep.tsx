@@ -8,7 +8,7 @@ import {
   handleFieldChangeWithRevalidation,
   formFieldInputBaseClass,
   formFieldLabelClass,
-} from "./formFieldStyles";
+} from "../utils/formFieldUtils";
 import type { SignupFormValues } from "../types/signup";
 
 type PasswordFieldProps = {

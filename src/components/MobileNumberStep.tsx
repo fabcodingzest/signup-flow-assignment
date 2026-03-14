@@ -7,7 +7,7 @@ import {
   formFieldLabelClass,
   getFormFieldStateClasses,
   handleFieldChangeWithRevalidation,
-} from "./formFieldStyles";
+} from "../utils/formFieldUtils";
 import type { SignupFormValues } from "../types/signup";
 
 export function MobileNumberStep() {

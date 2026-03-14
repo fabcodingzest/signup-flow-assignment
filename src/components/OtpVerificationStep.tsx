@@ -19,12 +19,11 @@ export function OtpVerificationStep() {
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
   const otpError = errors.otp?.message;
-  const inputClass = (hasError: boolean) =>
-    `h-14 w-14 rounded-xl border text-center text-base text-text-primary outline-none sm:h-16 sm:w-16 lg:h-[70px] lg:w-[70px] ${
-      hasError
-        ? "border-required-indicator hover:border-required-indicator/80 focus:border-required-indicator focus:shadow-[0_0_0_3px_rgba(255,124,82,0.18)]"
-        : "border-brand-primary/30 hover:border-brand-primary/55 focus:border-brand-primary focus:shadow-[0_0_0_3px_rgba(0,84,253,0.2)]"
-    }`;
+  const inputClass = `h-14 w-14 rounded-xl border text-center text-base text-text-primary outline-none sm:h-16 sm:w-16 lg:h-[70px] lg:w-[70px] ${
+    otpError
+      ? "border-required-indicator hover:border-required-indicator/80 focus:border-required-indicator focus:shadow-[0_0_0_3px_rgba(255,124,82,0.18)]"
+      : "border-brand-primary/30 hover:border-brand-primary/55 focus:border-brand-primary focus:shadow-[0_0_0_3px_rgba(0,84,253,0.2)]"
+  }`;
 
   useEffect(() => {
     inputRefs.current[0]?.focus();
@@ -120,7 +119,7 @@ export function OtpVerificationStep() {
               value={digit}
               onChange={(e) => handleOtpChange(index, e.target.value)}
               onKeyDown={(e) => handleOtpKeyDown(index, e)}
-              className={inputClass(!!otpError)}
+              className={inputClass}
             />
           ))}
         </div>

@@ -4,7 +4,6 @@ import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import { FormActionButton } from "../components/FormActionButton";
-import { stepActionButtonLayoutClass } from "../components/formActionButtonLayout";
 import { SignupProgressBar } from "../components/SignupProgressBar";
 import { SignupSummaryModal } from "../components/SignupSummaryModal";
 import { StepActionRow } from "../components/StepActionRow";
@@ -13,6 +12,8 @@ import type { SignupFormValues, SubmittedSummary } from "../types/signup";
 import { mockApiDelay } from "../utils/mockApi";
 import { signupSchema } from "../validation/signupSchema";
 import Illustration from "../assets/illustration.png";
+
+const stepActionButtonLayoutClass = "min-w-0 flex-1 lg:max-w-none lg:flex-1";
 
 export function SignupFlowPage() {
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ export function SignupFlowPage() {
   const isContinueDisabled =
     isContinueLoading || (isFirstStep && !accountType) || (isOtpStep && otp.length !== 4);
 
-  const continueButtonText = isOtpStep || isLastStep ? "Loading..." : "Continue";
+  const loadingText = isOtpStep ? "Verifying..." : "Submitting...";
 
   useEffect(() => {
     if (!isSummaryModalOpen) {
@@ -168,7 +169,7 @@ export function SignupFlowPage() {
                   type="submit"
                   disabled={isContinueDisabled}
                   isLoading={isContinueLoading}
-                  loadingText={continueButtonText}
+                  loadingText={loadingText}
                 >
                   Continue
                 </FormActionButton>
