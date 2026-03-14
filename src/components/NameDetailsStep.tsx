@@ -23,7 +23,7 @@ type NameFieldProps = {
   control: ReturnType<typeof useFormContext<SignupFormValues>>["control"];
 };
 
-function NameField({
+const NameField = ({
   control,
   error,
   fieldName,
@@ -34,7 +34,7 @@ function NameField({
   placeholder,
   shouldValidateOnChange,
   trigger,
-}: NameFieldProps) {
+}: NameFieldProps) => {
   return (
     <>
       <label htmlFor={inputId} className={formFieldLabelClass}>
@@ -68,9 +68,9 @@ function NameField({
       {error ? <p className={`mt-2 ${formFieldErrorClass}`}>{error}</p> : null}
     </>
   );
-}
+};
 
-export function NameDetailsStep() {
+const NameDetailsStep = () => {
   const {
     control,
     setFocus,
@@ -123,4 +123,6 @@ export function NameDetailsStep() {
       </div>
     </section>
   );
-}
+};
+
+export default NameDetailsStep;

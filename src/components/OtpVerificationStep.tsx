@@ -7,7 +7,7 @@ import type { SignupFormValues } from "../types/signup";
 const OTP_LENGTH = 4;
 const RESEND_DELAY_SECONDS = 10;
 
-export function OtpVerificationStep() {
+const OtpVerificationStep = () => {
   const {
     setValue,
     trigger,
@@ -144,4 +144,6 @@ export function OtpVerificationStep() {
       </div>
     </section>
   );
-}
+};
+
+export default OtpVerificationStep;

@@ -27,7 +27,7 @@ type PasswordFieldProps = {
   validateFields: "password" | "confirmPassword" | Array<"password" | "confirmPassword">;
 };
 
-function PasswordField({
+const PasswordField = ({
   control,
   fieldName,
   fieldStateClasses,
@@ -42,7 +42,7 @@ function PasswordField({
   toggleLabel,
   trigger,
   validateFields,
-}: PasswordFieldProps) {
+}: PasswordFieldProps) => {
   return (
     <>
       <label htmlFor={inputId} className={formFieldLabelClass}>
@@ -90,9 +90,9 @@ function PasswordField({
       <p className={`mt-2 ${helperTextClassName}`}>{helperText}</p>
     </>
   );
-}
+};
 
-export function PasswordStep() {
+const PasswordStep = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {
@@ -178,4 +178,6 @@ export function PasswordStep() {
       </div>
     </section>
   );
-}
+};
+
+export default PasswordStep;

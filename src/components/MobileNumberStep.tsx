@@ -10,7 +10,7 @@ import {
 } from "../utils/formFieldUtils";
 import type { SignupFormValues } from "../types/signup";
 
-export function MobileNumberStep() {
+const MobileNumberStep = () => {
   const {
     control,
     setFocus,
@@ -99,4 +99,6 @@ export function MobileNumberStep() {
       </div>
     </section>
   );
-}
+};
+
+export default MobileNumberStep;

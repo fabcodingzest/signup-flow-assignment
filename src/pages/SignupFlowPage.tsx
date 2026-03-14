@@ -3,10 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-import { FormActionButton } from "../components/FormActionButton";
-import { SignupProgressBar } from "../components/SignupProgressBar";
-import { SignupSummaryModal } from "../components/SignupSummaryModal";
-import { StepActionRow } from "../components/StepActionRow";
+import FormActionButton from "../components/FormActionButton";
+import SignupProgressBar from "../components/SignupProgressBar";
+import SignupSummaryModal from "../components/SignupSummaryModal";
+import StepActionRow from "../components/StepActionRow";
 import { signupSteps } from "../config/signupSteps";
 import type { SignupFormValues, SubmittedSummary } from "../types/signup";
 import { mockApiDelay } from "../utils/mockApi";
@@ -15,7 +15,7 @@ import Illustration from "../assets/illustration.png";
 
 const stepActionButtonLayoutClass = "min-w-0 flex-1 lg:max-w-none lg:flex-1";
 
-export function SignupFlowPage() {
+const SignupFlowPage = () => {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
@@ -177,4 +177,6 @@ export function SignupFlowPage() {
       </div>
     </FormProvider>
   );
-}
+};
+
+export default SignupFlowPage;

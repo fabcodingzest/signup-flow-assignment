@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import { FormActionButton } from "../components/FormActionButton";
+import FormActionButton from "../components/FormActionButton";
 
-export function DashboardPage() {
+const DashboardPage = () => {
   const navigate = useNavigate();
 
   return (
@@ -22,4 +22,6 @@ export function DashboardPage() {
       </div>
     </div>
   );
-}
+};
+
+export default DashboardPage;

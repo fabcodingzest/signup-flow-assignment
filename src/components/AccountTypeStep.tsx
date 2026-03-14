@@ -22,7 +22,7 @@ const cardBaseClass =
 const cardSelectedClass = "border-brand-primary text-brand-primary";
 const cardUnselectedClass = "border-border-subtle text-text-primary";
 
-export function AccountTypeStep() {
+const AccountTypeStep = () => {
   const { control, setValue } = useFormContext<SignupFormValues>();
   const selectedAccountType = useWatch({
     control,
@@ -72,4 +72,6 @@ export function AccountTypeStep() {
       })}
     </fieldset>
   );
-}
+};
+
+export default AccountTypeStep;

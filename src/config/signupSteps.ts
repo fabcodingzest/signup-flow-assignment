@@ -1,8 +1,8 @@
-import { AccountTypeStep } from "../components/AccountTypeStep";
-import { MobileNumberStep } from "../components/MobileNumberStep";
-import { NameDetailsStep } from "../components/NameDetailsStep";
-import { OtpVerificationStep } from "../components/OtpVerificationStep";
-import { PasswordStep } from "../components/PasswordStep";
+import AccountTypeStep from "../components/AccountTypeStep";
+import MobileNumberStep from "../components/MobileNumberStep";
+import NameDetailsStep from "../components/NameDetailsStep";
+import OtpVerificationStep from "../components/OtpVerificationStep";
+import PasswordStep from "../components/PasswordStep";
 import type { StepConfig } from "../types/signup";
 
 export const signupSteps: StepConfig[] = [

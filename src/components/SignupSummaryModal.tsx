@@ -1,6 +1,6 @@
 import { FiCheck, FiShield } from "react-icons/fi";
 
-import { FormActionButton } from "./FormActionButton";
+import FormActionButton from "./FormActionButton";
 
 type SignupSummaryModalProps = {
   accountType: string;
@@ -11,14 +11,14 @@ type SignupSummaryModalProps = {
   onClose: () => void;
 };
 
-export function SignupSummaryModal({
+const SignupSummaryModal = ({
   accountType,
   fullName,
   isOpen,
   mobileNumber,
   onConfirm,
   onClose,
-}: SignupSummaryModalProps) {
+}: SignupSummaryModalProps) => {
   const summaryRows = [
     { label: "Account Type", value: accountType, valueClassName: "capitalize" },
     { label: "Name", value: fullName || "-", valueClassName: "" },
@@ -78,4 +78,6 @@ export function SignupSummaryModal({
       </div>
     </div>
   );
-}
+};
+
+export default SignupSummaryModal;

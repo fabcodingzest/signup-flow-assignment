@@ -4,11 +4,11 @@ type SignupProgressBarProps = {
   currentStepIndex: number;
 };
 
-export function SignupProgressBar({
+const SignupProgressBar = ({
   isComplete,
   totalSteps,
   currentStepIndex,
-}: SignupProgressBarProps) {
+}: SignupProgressBarProps) => {
   const progressPercent = isComplete
     ? 100
     : Math.min(((currentStepIndex + 1) / totalSteps) * 100, 100);
@@ -21,4 +21,6 @@ export function SignupProgressBar({
       />
     </div>
   );
-}
+};
+
+export default SignupProgressBar;
