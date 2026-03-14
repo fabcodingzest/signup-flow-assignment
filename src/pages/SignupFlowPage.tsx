@@ -120,7 +120,7 @@ const SignupFlowPage = () => {
             </div>
 
             <form
-              className="mt-1 flex min-h-[calc(100dvh-15rem)] w-full max-w-[600px] flex-col self-center rounded-2xl bg-white px-5 py-6 shadow-panel sm:min-h-[calc(100dvh-14rem)] sm:px-6 sm:py-7 md:min-h-[560px] lg:h-full lg:min-h-0 lg:max-w-none lg:self-auto lg:px-16 lg:py-11"
+              className="mt-1 flex min-h-[calc(100dvh-15rem)] w-full max-w-[600px] flex-col self-center rounded-2xl bg-white px-5 py-6 shadow-panel sm:min-h-[calc(100dvh-14rem)] sm:px-6 sm:py-7 md:min-h-[560px] lg:h-full lg:min-h-0 lg:max-w-none lg:self-auto lg:px-16 lg:py-11 overflow-y-auto"
               onSubmit={(event) => {
                 event.preventDefault();
                 void handleContinueClick();
