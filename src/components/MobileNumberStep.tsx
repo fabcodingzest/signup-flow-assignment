@@ -38,7 +38,7 @@ export function MobileNumberStep() {
         </label>
 
         <div className="flex gap-3">
-          <div className="relative w-[100px] shrink-0">
+          <div className="relative w-[130px] shrink-0">
             <Controller
               name="countryCode"
               control={control}
