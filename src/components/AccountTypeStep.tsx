@@ -17,7 +17,7 @@ const accountOptions = [
 ] as const;
 
 const cardBaseClass =
-  "flex cursor-pointer items-center justify-between rounded-2xl border bg-surface-muted p-5 shadow-card transition-all duration-200 focus-within:border-brand-primary focus-within:shadow-[0_0_0_3px_rgba(0,84,253,0.2)]";
+  "flex cursor-pointer items-center justify-between rounded-2xl border bg-surface-muted p-4 shadow-card transition-all duration-200 hover:border-brand-primary/45 hover:shadow-[0_12px_28px_rgba(17,33,74,0.08)] focus-within:border-brand-primary focus-within:shadow-[0_0_0_3px_rgba(0,84,253,0.2)] lg:p-6";
 
 const cardSelectedClass = "border-brand-primary text-brand-primary";
 const cardUnselectedClass = "border-border-subtle text-text-primary";
@@ -30,7 +30,7 @@ export function AccountTypeStep() {
   });
 
   return (
-    <fieldset className="space-y-4">
+    <fieldset className="mt-[54px] space-y-4">
       <legend className="sr-only">Account type</legend>
 
       {accountOptions.map((option) => {
@@ -51,11 +51,11 @@ export function AccountTypeStep() {
               className="sr-only"
             />
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 lg:gap-4">
               <span className="flex h-4 w-4 items-center justify-center">
                 <Icon className="h-4 w-4" aria-hidden="true" />
               </span>
-              <span className="text-base leading-none font-medium">{option.label}</span>
+              <span className="text-sm leading-none font-medium lg:text-base">{option.label}</span>
             </div>
 
             <span

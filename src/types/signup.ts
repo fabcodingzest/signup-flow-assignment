@@ -1,8 +1,13 @@
 import type { ComponentType } from "react";
+import type { InferType } from "yup";
 
-export interface SignupFormValues {
+import type { signupSchema } from "../validation/signupSchema";
+
+export type SignupFormValues = InferType<typeof signupSchema>;
+
+export interface SubmittedSummary {
   accountType: string;
-  countryCode: string;
+  fullName: string;
   mobileNumber: string;
 }
 
