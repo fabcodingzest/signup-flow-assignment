@@ -11,10 +11,16 @@ export function OtpVerificationStep() {
   const {
     setValue,
     trigger,
+    getValues,
     formState: { errors },
   } = useFormContext<SignupFormValues>();
 
-  const [otpDigits, setOtpDigits] = useState<string[]>(() => Array(OTP_LENGTH).fill(""));
+  const [otpDigits, setOtpDigits] = useState<string[]>(() => {
+    const saved = getValues("otp");
+    if (saved.length === OTP_LENGTH) return saved.split("");
+    return Array(OTP_LENGTH).fill("");
+  });
+
   const [secondsUntilResend, setSecondsUntilResend] = useState(0);
   const inputRefs = useRef<Array<HTMLInputElement | null>>([]);
 
