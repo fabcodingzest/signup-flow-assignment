@@ -95,7 +95,7 @@ export function SignupFlowPage() {
   return (
     <FormProvider {...form}>
       <div className="flex min-h-screen items-start justify-center px-4 py-4 lg:items-center lg:px-0 lg:py-0">
-        <div className="flex w-full max-w-[1240px] flex-col gap-4 lg:m-8 lg:h-screen lg:max-h-[650px] lg:flex-row lg:gap-x-6">
+        <div className="flex w-full max-w-[1240px] flex-col gap-4 lg:m-8 lg:h-[calc(100dvh-5rem)] max-h-[800px] lg:flex-row lg:gap-x-6">
           <div className="flex w-full flex-col justify-between lg:w-1/2">
             <div className="text-text-primary">
               <h3 className="text-xl font-thin lg:text-2xl">Let’s get started</h3>
@@ -136,7 +136,7 @@ export function SignupFlowPage() {
                 </p>
               ) : null}
 
-              <div className={`${currentStep.title ? "" : "mt-10"} w-full`}>
+              <div className={`w-full`}>
                 <CurrentStepComponent />
               </div>
 
