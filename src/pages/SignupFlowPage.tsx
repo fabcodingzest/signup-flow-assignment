@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import FormActionButton from "../components/FormActionButton";
 import SignupProgressBar from "../components/SignupProgressBar";
 import SignupSummaryModal from "../components/SignupSummaryModal";
-import StepActionRow from "../components/StepActionRow";
 import { signupSteps } from "../config/signupSteps";
 import type { SignupFormValues, SubmittedSummary } from "../types/signup";
 import { mockApiDelay } from "../utils/mockApi";
@@ -148,7 +147,7 @@ const SignupFlowPage = () => {
                 <CurrentStepComponent />
               </div>
 
-              <StepActionRow className="mt-auto pt-6">
+              <div className="flex justify-center gap-3 sm:gap-4 lg:justify-start mt-auto pt-6">
                 <FormActionButton
                   variant="secondary"
                   className={stepActionButtonLayoutClass}
@@ -169,7 +168,7 @@ const SignupFlowPage = () => {
                 >
                   Continue
                 </FormActionButton>
-              </StepActionRow>
+              </div>
             </form>
           </div>
         </div>

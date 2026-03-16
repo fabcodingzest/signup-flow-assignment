@@ -31,13 +31,13 @@ const SignupSummaryModal = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex animate-[fade-in_200ms_ease-out] items-center justify-center overflow-y-auto bg-[#132C4A]/35 px-4 py-6 sm:px-6"
+      className="fixed inset-0 z-50 flex animate-fade-in items-center justify-center overflow-y-auto bg-[#132C4A]/35 px-4 py-6 sm:px-6"
       onClick={onClose}
       onKeyDown={(e) => e.key === "Escape" && onClose()}
       tabIndex={-1}
     >
       <div
-        className="w-full max-w-[479px] animate-[fade-in_200ms_ease-out] rounded-2xl bg-white px-5 py-8 shadow-[0_24px_80px_rgba(19,44,74,0.18)] sm:px-6 sm:py-9"
+        className="w-full max-w-[479px] animate-fade-in rounded-2xl bg-white px-5 py-8 shadow-[0_24px_80px_rgba(19,44,74,0.18)] sm:px-6 sm:py-9"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mx-auto flex h-9.5 w-9.5 items-center justify-center rounded-full border-2 border-brand-primary text-brand-primary">
