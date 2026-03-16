@@ -11,30 +11,30 @@ import {
 import type { SignupFormValues } from "../types/signup";
 
 type NameFieldProps = {
-  error?: string;
   fieldName: "firstName" | "lastName";
-  fieldStateClasses: ReturnType<typeof getFormFieldStateClasses>;
   inputId: string;
-  isRequired?: boolean;
   label: string;
   placeholder: string;
-  shouldValidateOnChange: boolean;
-  trigger: ReturnType<typeof useFormContext<SignupFormValues>>["trigger"];
-  control: ReturnType<typeof useFormContext<SignupFormValues>>["control"];
+  isRequired?: boolean;
 };
 
 const NameField = ({
-  control,
-  error,
   fieldName,
-  fieldStateClasses,
   inputId,
   isRequired = false,
   label,
   placeholder,
-  shouldValidateOnChange,
-  trigger,
 }: NameFieldProps) => {
+  const {
+    control,
+    trigger,
+    formState: { errors, touchedFields },
+  } = useFormContext<SignupFormValues>();
+
+  const fieldError = errors[fieldName]?.message;
+  const fieldStateClasses = getFormFieldStateClasses(Boolean(fieldError));
+  const shouldValidateOnChange = touchedFields[fieldName] || Boolean(fieldError);
+
   return (
     <>
       <label htmlFor={inputId} className={formFieldLabelClass}>
@@ -65,25 +65,13 @@ const NameField = ({
         )}
       />
 
-      {error ? <p className={`mt-2 ${formFieldErrorClass}`}>{error}</p> : null}
+      {fieldError ? <p className={`mt-2 ${formFieldErrorClass}`}>{fieldError}</p> : null}
     </>
   );
 };
 
 const NameDetailsStep = () => {
-  const {
-    control,
-    setFocus,
-    trigger,
-    formState: { errors, touchedFields },
-  } = useFormContext<SignupFormValues>();
-
-  const firstNameError = errors.firstName?.message;
-  const lastNameError = errors.lastName?.message;
-  const firstNameFieldClasses = getFormFieldStateClasses(Boolean(firstNameError));
-  const lastNameFieldClasses = getFormFieldStateClasses(Boolean(lastNameError));
-  const shouldValidateFirstNameOnChange = touchedFields.firstName || Boolean(firstNameError);
-  const shouldValidateLastNameOnChange = touchedFields.lastName || Boolean(lastNameError);
+  const { setFocus } = useFormContext<SignupFormValues>();
 
   useEffect(() => {
     setFocus("firstName");
@@ -95,30 +83,20 @@ const NameDetailsStep = () => {
 
       <div className="mt-[54px]">
         <NameField
-          control={control}
-          error={firstNameError}
           fieldName="firstName"
-          fieldStateClasses={firstNameFieldClasses}
           inputId="first-name"
           isRequired
           label="First Name"
           placeholder="Oliver"
-          shouldValidateOnChange={shouldValidateFirstNameOnChange}
-          trigger={trigger}
         />
       </div>
 
       <div className="mt-4">
         <NameField
-          control={control}
-          error={lastNameError}
           fieldName="lastName"
-          fieldStateClasses={lastNameFieldClasses}
           inputId="last-name"
           label="Last Name"
           placeholder="Last Name"
-          shouldValidateOnChange={shouldValidateLastNameOnChange}
-          trigger={trigger}
         />
       </div>
     </section>
