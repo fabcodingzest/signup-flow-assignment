@@ -83,10 +83,10 @@ const OtpVerificationStep = () => {
 
     if (!pastedDigits.length) return;
 
-    const nextDigits = Array(OTP_LENGTH).fill("");
-    pastedDigits.forEach((digit, i) => {
-      nextDigits[i] = digit;
-    });
+    const nextDigits = Array(OTP_LENGTH)
+      .fill("")
+      .map((_, i) => pastedDigits[i] ?? "");
+
     updateOtpDigits(nextDigits);
     if (otpError) void trigger("otp");
     inputRefs.current[Math.min(pastedDigits.length, OTP_LENGTH) - 1]?.focus();
