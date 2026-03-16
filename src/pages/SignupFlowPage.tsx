@@ -103,9 +103,9 @@ const SignupFlowPage = () => {
   return (
     <FormProvider {...form}>
       <div className="flex min-h-screen items-start justify-center px-4 py-4 lg:items-center lg:px-0 lg:py-0">
-        <div className="flex w-full max-w-[1240px] flex-col gap-4 lg:m-8 lg:h-[calc(100dvh-5rem)] max-h-[800px] lg:flex-row lg:gap-x-6">
-          <div className="flex w-full flex-col justify-between lg:w-1/2">
-            <div className="text-text-primary">
+        <div className="flex w-full max-w-[1240px] flex-col gap-4 lg:m-8 lg:h-[calc(100dvh-5rem)] lg:max-h-[800px] lg:flex-row lg:gap-x-6">
+          <div className="flex w-full flex-col justify-between sm:items-center lg:w-1/2">
+            <div className="text-text-primary w-full sm:max-w-[600px] ">
               <h3 className="text-xl font-thin lg:text-2xl">Let’s get started</h3>
               <h1 className="mt-4 mb-6 text-4xl/[44px] font-bold lg:text-5xl/[54px]">
                 Create your account
@@ -128,7 +128,7 @@ const SignupFlowPage = () => {
             </div>
 
             <form
-              className="mt-1 flex min-h-[calc(100dvh-15rem)] w-full max-w-[600px] flex-col self-center rounded-2xl bg-white px-5 py-6 shadow-panel sm:min-h-[calc(100dvh-14rem)] sm:px-6 sm:py-7 md:min-h-[560px] lg:h-full lg:min-h-0 lg:max-w-none lg:self-auto lg:px-16 lg:py-11 overflow-y-auto"
+              className="mt-1 flex max-h-[700px] h-[calc(100dvh-15rem)] w-full max-w-[600px] flex-col self-center rounded-2xl bg-white px-5 py-6 shadow-panel sm:h-[calc(100dvh-14rem)] sm:px-6 sm:py-7 lg:min-h-[560px] lg:h-full lg:max-w-none lg:self-auto lg:px-16 lg:py-11 overflow-y-auto"
               onSubmit={(event) => {
                 event.preventDefault();
                 void handleContinueClick();
