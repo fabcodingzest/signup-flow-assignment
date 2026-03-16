@@ -19,7 +19,8 @@ const SignupFlowPage = () => {
   const navigate = useNavigate();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
   const [isSummaryModalOpen, setIsSummaryModalOpen] = useState(false);
-  const [isContinueLoading, setIsContinueLoading] = useState(false);
+  const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittedSummary, setSubmittedSummary] = useState<SubmittedSummary | null>(null);
 
   const form = useForm<SignupFormValues>({
@@ -52,6 +53,8 @@ const SignupFlowPage = () => {
     name: "otp",
   });
   const isOtpStep = currentStepIndex === 2;
+
+  const isContinueLoading = isOtpStep ? isVerifyingOtp : isSubmitting;
   const isContinueDisabled =
     isContinueLoading || (isFirstStep && !accountType) || (isOtpStep && otp.length !== 4);
 
@@ -72,13 +75,18 @@ const SignupFlowPage = () => {
       }
     }
 
-    if (isOtpStep || isLastStep) {
-      setIsContinueLoading(true);
+    if (isOtpStep) {
+      setIsVerifyingOtp(true);
       await mockApiDelay();
-      setIsContinueLoading(false);
+      setIsVerifyingOtp(false);
+      setCurrentStepIndex((i) => i + 1);
+      return;
     }
 
     if (isLastStep) {
+      setIsSubmitting(true);
+      await mockApiDelay();
+      setIsSubmitting(false);
       const submittedValues = getValues();
       setSubmittedSummary({
         accountType: submittedValues.accountType,
