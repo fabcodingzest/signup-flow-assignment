@@ -38,7 +38,7 @@ const MobileNumberStep = () => {
         </label>
 
         <div className="flex gap-3">
-          <div className="relative w-[116px] shrink-0">
+          <div className="relative w-[116px] lg:w-[93px] shrink-0">
             <Controller
               name="countryCode"
               control={control}
