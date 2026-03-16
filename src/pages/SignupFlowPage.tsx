@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -38,18 +38,14 @@ const SignupFlowPage = () => {
     },
   });
 
-  const { control, getValues, trigger } = form;
+  const { control, getValues, trigger, setValue } = form;
   const currentStep = signupSteps[currentStepIndex];
   const CurrentStepComponent = currentStep.component;
   const isFirstStep = currentStepIndex === 0;
   const isLastStep = currentStepIndex === signupSteps.length - 1;
-  const accountType = useWatch({
+  const [accountType, otp, mobileNumber, countryCode] = useWatch({
     control,
-    name: "accountType",
-  });
-  const otp = useWatch({
-    control,
-    name: "otp",
+    name: ["accountType", "otp", "mobileNumber", "countryCode"],
   });
   const isOtpStep = currentStepIndex === 2;
 
@@ -98,6 +94,10 @@ const SignupFlowPage = () => {
 
     setCurrentStepIndex((currentIndex) => Math.min(currentIndex + 1, signupSteps.length - 1));
   }
+
+  useEffect(() => {
+    setValue("otp", "");
+  }, [setValue, mobileNumber, countryCode]);
 
   return (
     <FormProvider {...form}>
