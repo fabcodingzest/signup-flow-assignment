@@ -87,7 +87,7 @@ const MobileNumberStep = () => {
                   })
                 }
                 placeholder="Your mobile number"
-                className={`min-w-0 flex-1 rounded-xl border ${borderClass} ${hoverClass} ${focusClass} bg-white px-3 py-4 text-sm text-text-muted outline-none placeholder:text-text-primary/45 sm:py-5 sm:text-base lg:py-6.5`}
+                className={`min-w-0 flex-1 placeholder:text-text-muted rounded-xl border ${borderClass} ${hoverClass} ${focusClass} bg-white px-3 py-4 text-sm text-text-primary outline-none placeholder:text-text-primary/45 sm:py-5 sm:text-base lg:py-6.5`}
               />
             )}
           />
