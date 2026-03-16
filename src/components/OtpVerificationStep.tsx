@@ -136,7 +136,7 @@ const OtpVerificationStep = () => {
             type="button"
             onClick={handleResendClick}
             disabled={secondsUntilResend > 0}
-            className="text-xs font-medium text-brand-primary disabled:text-text-muted"
+            className="text-xs font-medium text-brand-primary disabled:text-text-muted cursor-pointer disabled:cursor-not-allowed"
           >
             {secondsUntilResend > 0 ? `Resend OTP in ${secondsUntilResend}s` : "Resend OTP"}
           </button>

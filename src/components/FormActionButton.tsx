@@ -13,11 +13,9 @@ type FormActionButtonProps = PropsWithChildren<
 >;
 
 const baseButtonClass =
-  "inline-flex w-full items-center justify-center rounded-full border-2 px-3 py-3 text-center text-sm font-medium leading-none transition-colors duration-200 sm:px-4 sm:py-4 md:max-w-[250px] focus-visible:border-brand-primary focus-visible:shadow-[0_0_0_3px_rgba(0,84,253,0.2)] focus-visible:outline-none";
+  "inline-flex w-full items-center justify-center rounded-full border-2 px-3 py-3 text-center text-sm font-medium leading-none transition-colors duration-200 sm:px-4 sm:py-4 md:max-w-[250px] focus-visible:border-brand-primary focus-visible:shadow-[0_0_0_3px_rgba(0,84,253,0.2)] focus-visible:outline-none cursor-pointer disabled:cursor-not-allowed";
 
-const disabledButtonClass = "cursor-not-allowed opacity-50";
-
-const enabledButtonClass = "cursor-pointer";
+const disabledButtonClass = "opacity-50";
 
 const buttonVariantClasses: Record<FormActionButtonVariant, string> = {
   primary:
@@ -42,7 +40,7 @@ const FormActionButton = ({
       className={clsx(
         baseButtonClass,
         buttonVariantClasses[variant],
-        disabled || isLoading ? disabledButtonClass : enabledButtonClass,
+        (disabled || isLoading) && disabledButtonClass,
         className,
       )}
       disabled={disabled || isLoading}
