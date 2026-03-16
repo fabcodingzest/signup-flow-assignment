@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Controller, useFormContext, useWatch } from "react-hook-form";
+import { Controller, useFormContext, useWatch, type FieldPath } from "react-hook-form";
 
 import {
   getFormFieldStateClasses,
@@ -11,38 +11,54 @@ import {
 import type { SignupFormValues } from "../types/signup";
 
 type PasswordFieldProps = {
-  control: ReturnType<typeof useFormContext<SignupFormValues>>["control"];
   fieldName: "password" | "confirmPassword";
-  fieldStateClasses: ReturnType<typeof getFormFieldStateClasses>;
-  helperText: string;
-  helperTextClassName: string;
   inputId: string;
-  inputType: "password" | "text";
   label: string;
-  onToggleVisibility: () => void;
   placeholder: string;
-  shouldValidateOnChange: boolean;
+  helperText: string;
+  inputType: "password" | "text";
   toggleLabel: string;
-  trigger: ReturnType<typeof useFormContext<SignupFormValues>>["trigger"];
-  validateFields: "password" | "confirmPassword" | Array<"password" | "confirmPassword">;
+  onToggleVisibility: () => void;
 };
 
 const PasswordField = ({
-  control,
   fieldName,
-  fieldStateClasses,
   helperText,
-  helperTextClassName,
+  toggleLabel,
   inputId,
   inputType,
   label,
   onToggleVisibility,
   placeholder,
-  shouldValidateOnChange,
-  toggleLabel,
-  trigger,
-  validateFields,
 }: PasswordFieldProps) => {
+  const {
+    control,
+    trigger,
+    formState: { errors, touchedFields },
+  } = useFormContext<SignupFormValues>();
+
+  const fieldError = errors[fieldName]?.message;
+  const fieldStateClasses = getFormFieldStateClasses(Boolean(fieldError));
+  const shouldValidateOnChange = touchedFields[fieldName] || Boolean(fieldError);
+
+  const [password, confirmPassword] = useWatch({
+    control,
+    name: ["password", "confirmPassword"],
+  });
+  const validateFields =
+    fieldName === "password" && confirmPassword
+      ? (["password", "confirmPassword"] as FieldPath<SignupFormValues>[])
+      : fieldName;
+
+  const helperTextClassName = fieldError
+    ? "text-required-indicator"
+    : fieldName === "password"
+      ? password.length >= 6
+        ? "text-success-indicator"
+        : "text-text-muted"
+      : confirmPassword && confirmPassword === password
+        ? "text-success-indicator"
+        : "text-text-muted";
   return (
     <>
       <label htmlFor={inputId} className={formFieldLabelClass}>
@@ -95,39 +111,7 @@ const PasswordField = ({
 const PasswordStep = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const {
-    control,
-    setFocus,
-    trigger,
-    formState: { errors, touchedFields },
-  } = useFormContext<SignupFormValues>();
-
-  const password = useWatch({
-    control,
-    name: "password",
-  });
-  const confirmPassword = useWatch({
-    control,
-    name: "confirmPassword",
-  });
-  const passwordError = errors.password?.message;
-  const confirmPasswordError = errors.confirmPassword?.message;
-  const passwordFieldClasses = getFormFieldStateClasses(Boolean(passwordError));
-  const confirmPasswordFieldClasses = getFormFieldStateClasses(Boolean(confirmPasswordError));
-  const shouldValidatePasswordOnChange = touchedFields.password || Boolean(passwordError);
-  const shouldValidateConfirmPasswordOnChange =
-    touchedFields.confirmPassword || Boolean(confirmPasswordError);
-  const passwordHelperClass = passwordError
-    ? "text-required-indicator"
-    : password.length >= 6
-      ? "text-success-indicator"
-      : "text-text-muted";
-
-  const confirmHelperClass = confirmPasswordError
-    ? "text-required-indicator"
-    : confirmPassword && confirmPassword === password
-      ? "text-success-indicator"
-      : "text-text-muted";
+  const { setFocus } = useFormContext<SignupFormValues>();
 
   useEffect(() => {
     setFocus("password");
@@ -141,39 +125,27 @@ const PasswordStep = () => {
 
       <div className="mt-[54px]">
         <PasswordField
-          control={control}
           fieldName="password"
-          fieldStateClasses={passwordFieldClasses}
           helperText="Must be atleast 6 characters"
-          helperTextClassName={passwordHelperClass}
           inputId="password"
           inputType={showPassword ? "text" : "password"}
           label="Enter new password"
           onToggleVisibility={() => setShowPassword((currentValue) => !currentValue)}
           placeholder="Enter new password"
-          shouldValidateOnChange={shouldValidatePasswordOnChange || Boolean(confirmPassword)}
           toggleLabel={showPassword ? "Hide password" : "Show password"}
-          trigger={trigger}
-          validateFields={confirmPassword ? ["password", "confirmPassword"] : "password"}
         />
       </div>
 
       <div className="mt-4">
         <PasswordField
-          control={control}
           fieldName="confirmPassword"
-          fieldStateClasses={confirmPasswordFieldClasses}
           helperText="Both passwords must match"
-          helperTextClassName={confirmHelperClass}
           inputId="confirm-password"
           inputType={showConfirmPassword ? "text" : "password"}
           label="Confirm password"
           onToggleVisibility={() => setShowConfirmPassword((currentValue) => !currentValue)}
           placeholder="Confirm password"
-          shouldValidateOnChange={shouldValidateConfirmPasswordOnChange}
           toggleLabel={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
-          trigger={trigger}
-          validateFields="confirmPassword"
         />
       </div>
     </section>
