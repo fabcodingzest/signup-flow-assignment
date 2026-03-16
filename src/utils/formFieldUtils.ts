@@ -9,8 +9,6 @@ export const formFieldInputBaseClass =
   "w-full rounded-xl bg-white font-normal text-base text-text-primary outline-none placeholder:text-text-primary/25";
 
 export const formFieldErrorClass = "text-base text-required-indicator";
-export const formFieldMutedHelperClass = "text-base text-text-muted";
-export const formFieldSuccessHelperClass = "text-base text-success-indicator";
 
 export function getFormFieldStateClasses(hasError: boolean) {
   if (hasError) {
