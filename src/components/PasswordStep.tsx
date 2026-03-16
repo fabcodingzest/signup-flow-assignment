@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import { Controller, useFormContext, useWatch, type FieldPath } from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 
 import {
   getFormFieldStateClasses,
@@ -47,7 +47,7 @@ const PasswordField = ({
   });
   const validateFields =
     fieldName === "password" && confirmPassword
-      ? (["password", "confirmPassword"] as FieldPath<SignupFormValues>[])
+      ? (["password", "confirmPassword"] as const)
       : fieldName;
 
   const helperTextClassName = fieldError

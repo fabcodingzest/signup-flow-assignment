@@ -33,7 +33,7 @@ type RevalidateOnChangeOptions = {
   onChange: (value: string) => void;
   shouldValidate: boolean;
   trigger: UseFormTrigger<SignupFormValues>;
-  fields: FieldPath<SignupFormValues> | Array<FieldPath<SignupFormValues>>;
+  fields: FieldPath<SignupFormValues> | ReadonlyArray<FieldPath<SignupFormValues>>;
   transformValue?: (value: string) => string;
 };
 
