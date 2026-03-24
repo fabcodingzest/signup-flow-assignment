@@ -99,10 +99,10 @@ const OtpVerificationStep = () => {
 
   useEffect(() => {
     if (secondsUntilResend === 0) return;
-    const timer = window.setTimeout(() => {
+    const timer = setTimeout(() => {
       setSecondsUntilResend((v) => Math.max(v - 1, 0));
     }, 1000);
-    return () => window.clearTimeout(timer);
+    return () => clearTimeout(timer);
   }, [secondsUntilResend]);
 
   return (
